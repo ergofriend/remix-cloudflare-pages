@@ -1,26 +1,39 @@
-export default function Index() {
+import type {LoaderFunction} from '@remix-run/cloudflare'
+import {useLoaderData} from '@remix-run/react'
+
+type PageCache = {
+  viewCount: number
+}
+
+type LoaderData = {
+  pageCache: PageCache
+}
+
+export const loader: LoaderFunction = async ({context}): Promise<LoaderData> => {
+  const kv = context.remix_cloudflare_pages_kv as KVNamespace
+  const pageCacheKey = 'indexViewCount'
+
+  // ページビュー数を取得
+  const pageCached = await kv.get<PageCache>(pageCacheKey, 'json')
+
+  //  ページビュー数を更新
+  const updatePageCache: PageCache = {
+    ...pageCached,
+    viewCount: (pageCached?.viewCount ?? 0) + 1,
+  }
+  await kv.put(pageCacheKey, JSON.stringify(updatePageCache))
+
+  return {pageCache: updatePageCache}
+}
+
+export default function HomePage() {
+  const {pageCache} = useLoaderData<LoaderData>()
   return (
-    <div style={{fontFamily: 'system-ui, sans-serif', lineHeight: '1.4'}}>
+    <div>
       <h1 className="text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
         Welcome to Remix
       </h1>
-      <ul>
-        <li>
-          <a target="_blank" href="https://remix.run/tutorials/blog" rel="noreferrer">
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/tutorials/jokes" rel="noreferrer">
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+      <p>表示回数: {pageCache.viewCount}</p>
     </div>
   )
 }

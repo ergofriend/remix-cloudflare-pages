@@ -11,7 +11,7 @@
     "build:remix": "remix build",
     "dev:css": "npm run generate:css -- --watch",
     "dev:remix": "remix watch",
-    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public",
+    "dev:wrangler": "cross-env NODE_ENV=development wrangler pages dev ./public -k remix_cloudflare_pages_kv",
     "dev": "remix build && run-p 'dev:*'",
     "start": "cross-env NODE_ENV=production npm run dev:wrangler",
     "generate:css": "npx tailwindcss -o ./app/tailwind.css"
