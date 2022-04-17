@@ -12,6 +12,5 @@ node_modules
 .yarn/install-state.gz
 .pnp.*
 
-
 # wrangler pages
 functions
