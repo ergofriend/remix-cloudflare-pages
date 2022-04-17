@@ -1,7 +1,9 @@
 export default function Index() {
   return (
     <div style={{fontFamily: 'system-ui, sans-serif', lineHeight: '1.4'}}>
-      <h1>Welcome to Remix</h1>
+      <h1 className="text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+        Welcome to Remix
+      </h1>
       <ul>
         <li>
           <a target="_blank" href="https://remix.run/tutorials/blog" rel="noreferrer">
