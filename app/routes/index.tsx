@@ -1,4 +1,3 @@
-import type {LoaderFunction} from '@remix-run/cloudflare'
 import {useLoaderData} from '@remix-run/react'
 
 type PageCache = {
@@ -10,7 +9,7 @@ type LoaderData = {
 }
 
 export const loader: LoaderFunction = async ({context}): Promise<LoaderData> => {
-  const kv = context.remix_cloudflare_pages_kv as KVNamespace
+  const kv = context.remix_cloudflare_pages_kv
   const pageCacheKey = 'indexViewCount'
 
   // ページビュー数を取得
