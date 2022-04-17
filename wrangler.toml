@@ -1,3 +1,0 @@
-kv_namespaces = [
-  { binding = "remix_cloudflare_pages_kv", id = "528fb08ae4c04c019f2a030cdec4c1ff" }
-]
