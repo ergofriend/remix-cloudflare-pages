@@ -1,11 +1,11 @@
-import type {AppData, DataFunctionArgs as Args} from '@remix-run/cloudflare'
+import type {AppData, DataFunctionArgs} from '@remix-run/cloudflare'
 
-interface DataFunctionArgs extends Omit<Args, 'context'> {
+interface Args extends Omit<DataFunctionArgs, 'context'> {
   context: {
     remix_cloudflare_pages_kv: KVNamespace
   }
 }
 
 declare global {
-  type LoaderFunction = (args: DataFunctionArgs) => Promise<Response> | Response | Promise<AppData> | AppData
+  type LoaderFunction = (args: Args) => Promise<Response> | Response | Promise<AppData> | AppData
 }
