@@ -9,18 +9,16 @@ type LoaderData = {
 }
 
 export const loader: LoaderFunction = async ({context}): Promise<LoaderData> => {
-  const kv = context.remix_cloudflare_pages_kv
+  const {remix_cloudflare_pages_kv} = context
   const pageCacheKey = 'indexViewCount'
-
   // ページビュー数を取得
-  const pageCached = await kv.get<PageCache>(pageCacheKey, 'json')
-
+  const pageCached = await remix_cloudflare_pages_kv.get<PageCache>(pageCacheKey, 'json')
   //  ページビュー数を更新
   const updatePageCache: PageCache = {
     ...pageCached,
     viewCount: (pageCached?.viewCount ?? 0) + 1,
   }
-  await kv.put(pageCacheKey, JSON.stringify(updatePageCache))
+  await remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updatePageCache))
 
   return {pageCache: updatePageCache}
 }
