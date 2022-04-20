@@ -23,7 +23,7 @@ const defaultVoteData = {takenoko: 0, kinoko: 0}
 const getData = async (ctx: Context) => {
   const partialData = await ctx.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
   const data: PageData = {
-    viewCount: partialData?.viewCount ?? 1,
+    viewCount: partialData?.viewCount ?? 0,
     voteData: partialData?.voteData ?? defaultVoteData,
   }
   return data
@@ -49,7 +49,7 @@ export const action: ActionFunction = async ({context, request}) => {
     const {like} = values
     const pageCached = await getData(context)
     const updateData: PageData = {
-      viewCount: pageCached.viewCount,
+      ...pageCached,
       voteData: {
         ...pageCached.voteData,
         [like]: pageCached.voteData[like] + 1,
@@ -60,7 +60,7 @@ export const action: ActionFunction = async ({context, request}) => {
 
   return await formAction({
     request,
-    schema: schema,
+    schema,
     mutation,
     successPath: '/?voted=true',
   })
