@@ -56,6 +56,7 @@ export const action: ActionFunction = async ({context, request}) => {
       },
     }
     await setData(context, updateData)
+    return values
   })
 
   return await formAction({

@@ -1,5 +1,6 @@
 import {Link} from '@remix-run/react'
 import {Form} from 'remix-forms'
+
 import * as vote from './service/vote'
 
 const Page = () => {
