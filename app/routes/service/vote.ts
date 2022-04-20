@@ -20,30 +20,49 @@ type PageData = {
 
 const defaultVoteData = {takenoko: 0, kinoko: 0}
 
+const getData = async (ctx: Context) => {
+  const partialData = await ctx.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
+  const data: PageData = {
+    viewCount: partialData?.viewCount ?? 1,
+    voteData: partialData?.voteData ?? defaultVoteData,
+  }
+  return data
+}
+
+const setData = async (ctx: Context, updateData: PageData) =>
+  await ctx.remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
+
+const incrementViewCount = async (ctx: Context, data: PageData) => {
+  const updateData: PageData = {
+    ...data,
+    viewCount: data.viewCount + 1,
+  }
+  await setData(ctx, updateData)
+}
+
 export const schema = z.object({
   like: z.enum(voteKey),
 })
 
 export const action: ActionFunction = async ({context, request}) => {
-  const {remix_cloudflare_pages_kv} = context
   const mutation = makeDomainFunction(schema)(async values => {
     const {like} = values
-    const pageCached = await remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
-    const updateData: Partial<PageData> = {
-      ...pageCached,
+    const pageCached = await getData(context)
+    const updateData: PageData = {
+      viewCount: pageCached.viewCount,
       voteData: {
-        ...(pageCached?.voteData ?? defaultVoteData),
-        [like]: pageCached?.voteData ? pageCached.voteData[like] + 1 : 1,
+        ...pageCached.voteData,
+        [like]: pageCached.voteData[like] + 1,
       },
     }
-    await remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
+    await setData(context, updateData)
   })
 
   return await formAction({
     request,
     schema: schema,
     mutation,
-    successPath: '/',
+    successPath: '/?voted=true',
   })
 }
 
@@ -52,14 +71,8 @@ export const useData = () => {
   return pageData
 }
 
-export const loader: LoaderFunction = async ({context}): Promise<PageData> => {
-  const {remix_cloudflare_pages_kv} = context
-
-  const pageCached = await remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
-  const pageData: PageData = {
-    ...pageCached,
-    viewCount: pageCached?.viewCount ?? 1,
-    voteData: pageCached?.voteData ?? defaultVoteData,
-  }
-  return pageData
+export const loader: LoaderFunction = async ({context, request}): Promise<PageData> => {
+  const pageCached = await getData(context)
+  if (!request.url.includes('voted')) await incrementViewCount(context, pageCached)
+  return pageCached
 }
