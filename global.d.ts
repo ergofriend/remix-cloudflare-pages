@@ -7,6 +7,8 @@ declare global {
   }
   type LoaderFunction = (args: FunctionArgs) => FunctionResult
   type ActionFunction = (args: FunctionArgs) => FunctionResult
+  // for env
+  const SENTRY_DSN: string
 }
 
 interface FunctionArgs extends Omit<DataFunctionArgs, 'context'> {

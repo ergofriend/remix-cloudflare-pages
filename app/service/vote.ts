@@ -1,6 +1,7 @@
 import {useLoaderData} from '@remix-run/react'
 import {makeDomainFunction} from 'remix-domains'
 import {formAction} from 'remix-forms'
+import Toucan from 'toucan-js'
 import {z} from 'zod'
 
 const pageCacheKey = 'indexViewCount'
@@ -46,6 +47,15 @@ export const schema = z.object({
 
 export const action: ActionFunction = async ({context, request}) => {
   const mutation = makeDomainFunction(schema)(async values => {
+    if (SENTRY_DSN && SENTRY_DSN.length) {
+      const sentry = new Toucan({
+        dsn: SENTRY_DSN,
+        context: context,
+        allowedHeaders: ['user-agent'],
+        allowedSearchParams: /(.*)/,
+      })
+      sentry.captureMessage(JSON.stringify(values))
+    }
     const {like} = values
     const pageCached = await getData(context.env)
     const updateData: PageData = {
