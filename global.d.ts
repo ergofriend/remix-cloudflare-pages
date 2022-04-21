@@ -1,14 +1,15 @@
 import type {AppData, DataFunctionArgs} from '@remix-run/cloudflare'
 
 declare global {
-  type Context = EventContext<KV, any, any>
-  type KV = {
+  type Context = EventContext<ENV, any, any>
+  type ENV = {
+    // Environment Variables
+    SENTRY_DSN: string
+    // KV Namespace
     remix_cloudflare_pages_kv: KVNamespace
   }
   type LoaderFunction = (args: FunctionArgs) => FunctionResult
   type ActionFunction = (args: FunctionArgs) => FunctionResult
-  // for env
-  const SENTRY_DSN: string
 }
 
 interface FunctionArgs extends Omit<DataFunctionArgs, 'context'> {

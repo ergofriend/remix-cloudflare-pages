@@ -21,8 +21,8 @@ type PageData = {
 
 const defaultVoteData = {takenoko: 0, kinoko: 0}
 
-const getData = async (kv: KV) => {
-  const partialData = await kv.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
+const getData = async (env: ENV) => {
+  const partialData = await env.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
   const data: PageData = {
     viewCount: partialData?.viewCount ?? 0,
     voteData: partialData?.voteData ?? defaultVoteData,
@@ -30,8 +30,8 @@ const getData = async (kv: KV) => {
   return data
 }
 
-const setData = async (kv: KV, updateData: PageData) =>
-  await kv.remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
+const setData = async (env: ENV, updateData: PageData) =>
+  await env.remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
 
 const incrementViewCount = async (ctx: Context, data: PageData) => {
   const updateData: PageData = {
@@ -46,16 +46,14 @@ export const schema = z.object({
 })
 
 export const action: ActionFunction = async ({context, request}) => {
+  const sentry = new Toucan({
+    dsn: context.env.SENTRY_DSN,
+    context: context,
+  })
+
   const mutation = makeDomainFunction(schema)(async values => {
-    if (SENTRY_DSN && SENTRY_DSN.length) {
-      const sentry = new Toucan({
-        dsn: SENTRY_DSN,
-        context: context,
-        allowedHeaders: ['user-agent'],
-        allowedSearchParams: /(.*)/,
-      })
-      sentry.captureMessage(JSON.stringify(values))
-    }
+    sentry.captureMessage(JSON.stringify(values))
+
     const {like} = values
     const pageCached = await getData(context.env)
     const updateData: PageData = {
