@@ -50,8 +50,7 @@ export const action: ActionFunction = async ({context, request}) => {
     dsn: context.env.SENTRY_DSN,
     context: context,
   })
-  const body = await request.formData()
-  sentry.captureMessage(JSON.stringify({request, body}))
+  sentry.captureMessage(JSON.stringify({request, context}))
 
   const mutation = makeDomainFunction(schema)(async values => {
     sentry.captureMessage(JSON.stringify(values))
