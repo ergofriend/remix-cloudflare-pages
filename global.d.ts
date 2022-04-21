@@ -1,7 +1,8 @@
 import type {AppData, DataFunctionArgs} from '@remix-run/cloudflare'
 
 declare global {
-  type Context = {
+  type Context = EventContext<KV, any, any>
+  type KV = {
     remix_cloudflare_pages_kv: KVNamespace
   }
   type LoaderFunction = (args: FunctionArgs) => FunctionResult

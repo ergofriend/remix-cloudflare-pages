@@ -20,8 +20,8 @@ type PageData = {
 
 const defaultVoteData = {takenoko: 0, kinoko: 0}
 
-const getData = async (ctx: Context) => {
-  const partialData = await ctx.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
+const getData = async (kv: KV) => {
+  const partialData = await kv.remix_cloudflare_pages_kv.get<Partial<PageData>>(pageCacheKey, 'json')
   const data: PageData = {
     viewCount: partialData?.viewCount ?? 0,
     voteData: partialData?.voteData ?? defaultVoteData,
@@ -29,15 +29,15 @@ const getData = async (ctx: Context) => {
   return data
 }
 
-const setData = async (ctx: Context, updateData: PageData) =>
-  await ctx.remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
+const setData = async (kv: KV, updateData: PageData) =>
+  await kv.remix_cloudflare_pages_kv.put(pageCacheKey, JSON.stringify(updateData))
 
 const incrementViewCount = async (ctx: Context, data: PageData) => {
   const updateData: PageData = {
     ...data,
     viewCount: data.viewCount + 1,
   }
-  await setData(ctx, updateData)
+  await setData(ctx.env, updateData)
 }
 
 export const schema = z.object({
@@ -47,7 +47,7 @@ export const schema = z.object({
 export const action: ActionFunction = async ({context, request}) => {
   const mutation = makeDomainFunction(schema)(async values => {
     const {like} = values
-    const pageCached = await getData(context)
+    const pageCached = await getData(context.env)
     const updateData: PageData = {
       ...pageCached,
       voteData: {
@@ -55,7 +55,7 @@ export const action: ActionFunction = async ({context, request}) => {
         [like]: pageCached.voteData[like] + 1,
       },
     }
-    await setData(context, updateData)
+    await setData(context.env, updateData)
     return values
   })
 
@@ -73,7 +73,7 @@ export const useData = () => {
 }
 
 export const loader: LoaderFunction = async ({context, request}): Promise<PageData> => {
-  const pageCached = await getData(context)
+  const pageCached = await getData(context.env)
   if (!request.url.includes('voted')) await incrementViewCount(context, pageCached)
   return pageCached
 }
