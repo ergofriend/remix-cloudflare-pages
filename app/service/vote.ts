@@ -52,7 +52,7 @@ export const action: ActionFunction = async ({context, request}) => {
   })
   const formData = await request.clone().formData()
   const data = new URLSearchParams(formData as URLSearchParams).toString()
-  sentry.captureMessage(`action: ${data}`)
+  sentry.captureMessage(`action: ${data} like: ${formData.get('like')?.toString()}`)
 
   const mutation = makeDomainFunction(schema)(async values => {
     sentry.captureMessage(`values: ${JSON.stringify(values)}`)
