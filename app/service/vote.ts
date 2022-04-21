@@ -75,16 +75,14 @@ export const action: ActionFunction = async ({context, request}) => {
     successPath: '/?voted=true',
     beforeAction: async req => {
       try {
-        const formData = await req.formData()
-        sentry.captureMessage(`{beforeAction: ${JSON.stringify(formData)}`)
+        sentry.captureMessage(`{beforeAction: ${JSON.stringify(req)}`)
       } catch (error) {
         sentry.captureMessage(`{beforeAction error: ${JSON.stringify(error)}`)
       }
     },
     beforeSuccess: async req => {
       try {
-        const formData = await req.formData()
-        sentry.captureMessage(`{beforeSuccess: ${JSON.stringify(formData)}`)
+        sentry.captureMessage(`{beforeSuccess: ${JSON.stringify(req)}`)
       } catch (error) {
         sentry.captureMessage(`{beforeSuccess error: ${JSON.stringify(error)}`)
       }
