@@ -50,10 +50,12 @@ export const action: ActionFunction = async ({context, request}) => {
     dsn: context.env.SENTRY_DSN,
     context: context,
   })
-  sentry.captureMessage(JSON.stringify({request, context}))
+  const formData = await request.clone().formData()
+  const data = new URLSearchParams(formData as URLSearchParams).toString()
+  sentry.captureMessage(`action: ${data}`)
 
   const mutation = makeDomainFunction(schema)(async values => {
-    sentry.captureMessage(JSON.stringify(values))
+    sentry.captureMessage(`values: ${JSON.stringify(values)}`)
 
     const {like} = values
     const pageCached = await getData(context.env)
@@ -75,14 +77,18 @@ export const action: ActionFunction = async ({context, request}) => {
     successPath: '/?voted=true',
     beforeAction: async req => {
       try {
-        sentry.captureMessage(`{beforeAction: ${JSON.stringify(req)}`)
+        const formData = await req.clone().formData()
+        const data = new URLSearchParams(formData as URLSearchParams).toString()
+        sentry.captureMessage(`{beforeAction: ${data}`)
       } catch (error) {
         sentry.captureMessage(`{beforeAction error: ${JSON.stringify(error)}`)
       }
     },
     beforeSuccess: async req => {
       try {
-        sentry.captureMessage(`{beforeSuccess: ${JSON.stringify(req)}`)
+        const formData = await req.clone().formData()
+        const data = new URLSearchParams(formData as URLSearchParams).toString()
+        sentry.captureMessage(`{beforeSuccess: ${JSON.stringify(data)}`)
       } catch (error) {
         sentry.captureMessage(`{beforeSuccess error: ${JSON.stringify(error)}`)
       }
