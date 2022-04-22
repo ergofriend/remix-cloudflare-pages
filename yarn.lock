@@ -8036,20 +8036,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remix-domains@github:SeasonedSoftware/remix-domains#cloudflare-adapter-workaround":
+"remix-domains@npm:^0.0.2":
   version: 0.0.2
-  resolution: "remix-domains@https://github.com/SeasonedSoftware/remix-domains.git#commit=3de220f0ad166e2523ff13fda275c1b268676db6"
+  resolution: "remix-domains@npm:0.0.2"
   dependencies:
     qs: ^6.10.3
   peerDependencies:
     zod: ^3.13.4
-  checksum: 351d4fe7f5b75ee710970487f0a592de89786068d990e33d50b827ad56799265de91634acef0204c9fb75e45daf55bc70cbb1ab644eb899650f338ba80a25f38
+  checksum: b98aeb2a8465572bc4755e5cf47234f09640800b2dfadace2ef63e7f9139ab0cab70f34e2ce1b7cc88b5d81e4fab0d386bd42ffde48a65210b9564a379316dce
   languageName: node
   linkType: hard
 
-"remix-forms@npm:^0.7.2":
-  version: 0.7.2
-  resolution: "remix-forms@npm:0.7.2"
+"remix-forms@npm:^0.7.7":
+  version: 0.7.7
+  resolution: "remix-forms@npm:0.7.7"
   dependencies:
     "@hookform/resolvers": ^2.8.8
     lodash: ^4.17.21
@@ -8060,7 +8060,7 @@ __metadata:
     react: ">=16.8"
     remix-domains: ">=0.0.2"
     zod: ">=3.12"
-  checksum: b9ff6055ed346bc9578505bf21481857f69c96d728bfe513866b2271f0d1996065f074100b8a0a1c230913439d1bf64c8979030a2de5c7832a6bd45febf94b17
+  checksum: 0aa4cc5973a8a3b4933360f3a44c15c6a81f193fbe8ca40d710707731b811de2e19e35ad30f263be08d9fc4b363c6509a592d434161f362d8b51307c539e8ab6
   languageName: node
   linkType: hard
 
@@ -8081,8 +8081,8 @@ __metadata:
     npm-run-all: ^4.1.5
     react: ^17.0.2
     react-dom: ^17.0.2
-    remix-domains: "github:SeasonedSoftware/remix-domains#cloudflare-adapter-workaround"
-    remix-forms: ^0.7.2
+    remix-domains: ^0.0.2
+    remix-forms: ^0.7.7
     tailwindcss: ^3.0.24
     toucan-js: ^2.6.0
     typescript: ^4.5.5
