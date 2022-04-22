@@ -468,33 +468,18 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia:  ;
 }
 
-.bg-gradient-to-r {
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+.flex {
+  display: flex;
 }
 
-.from-purple-400 {
-  --tw-gradient-from: #c084fc;
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(192 132 252 / 0));
+.flex-col {
+  flex-direction: column;
 }
 
-.to-pink-600 {
-  --tw-gradient-to: #db2777;
+.justify-around {
+  justify-content: space-around;
 }
 
-.bg-clip-text {
-  -webkit-background-clip: text;
-          background-clip: text;
-}
-
-.text-8xl {
-  font-size: 6rem;
-  line-height: 1;
-}
-
-.font-extrabold {
-  font-weight: 800;
-}
-
-.text-transparent {
-  color: transparent;
+.justify-evenly {
+  justify-content: space-evenly;
 }
