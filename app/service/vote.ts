@@ -1,6 +1,7 @@
 import {createCookieSessionStorage} from '@remix-run/cloudflare'
 import {useLoaderData} from '@remix-run/react'
 import {json} from '@remix-run/server-runtime'
+import type {SchemaError} from 'remix-domains'
 import {formAction} from 'remix-forms'
 import Toucan from 'toucan-js'
 import {z} from 'zod'
@@ -77,7 +78,22 @@ export const action: ActionFunction = async ({context, request}) => {
       const values = Object.fromEntries(formData.entries()) as z.infer<typeof schema>
       sentry.captureMessage(`like: ${values.like} from: ${request.headers.get('x-real-ip')}`)
 
-      const {like} = values
+      const result = schema.safeParse(values)
+
+      if (!result.success) {
+        const formatSchemaErrors = (errors: z.ZodIssue[]): SchemaError[] =>
+          errors.map(error => {
+            const {path, message} = error
+            return {path: path.map(String), message}
+          })
+        return json({
+          success: false,
+          errors: [],
+          inputErrors: formatSchemaErrors(result.error.issues),
+        })
+      }
+
+      const {like} = result.data
       const pageCached = await getData(context.env)
       const updateData: PageData = {
         ...pageCached,
@@ -91,11 +107,20 @@ export const action: ActionFunction = async ({context, request}) => {
       const session = await getSession(req.headers.get('Cookie'))
       const isVoted = session.get('isVoted') as boolean
       !isVoted && session.set('isVoted', true)
-      return json(values, {
-        headers: {
-          'Set-Cookie': await commitSession(session),
+      return json(
+        {
+          success: true,
+          data: result.data,
+          errors: [],
+          inputErrors: [],
+          environmentErrors: [],
         },
-      })
+        {
+          headers: {
+            'Set-Cookie': await commitSession(session),
+          },
+        }
+      )
     },
   })
 }
