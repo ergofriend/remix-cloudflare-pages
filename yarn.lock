@@ -953,26 +953,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/cloudflare-pages@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@remix-run/cloudflare-pages@npm:1.4.0"
+"@remix-run/cloudflare-pages@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@remix-run/cloudflare-pages@npm:1.4.1"
   dependencies:
-    "@remix-run/cloudflare": 1.4.0
+    "@remix-run/cloudflare": 1.4.1
   peerDependencies:
     "@cloudflare/workers-types": ^3.0.0
-  checksum: 2fac80bdc7900f8a16657fce02bbc789e4665facadfc0fa7fd56b2906fcd3c81f9c7a1d461d6a881dc60c56694e6c80e16e616db73d86eadd43d13cf3bdb1ced
+  checksum: 339099c487b7bf33a048a78e8da114a294d3c8102269ac3f61bedd6abcff6becb044809a1d8773d9350476f6cc7327ad68535aafafb33210cc44041ba0644faf
   languageName: node
   linkType: hard
 
-"@remix-run/cloudflare@npm:1.4.0, @remix-run/cloudflare@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@remix-run/cloudflare@npm:1.4.0"
+"@remix-run/cloudflare@npm:1.4.1, @remix-run/cloudflare@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@remix-run/cloudflare@npm:1.4.1"
   dependencies:
     "@cloudflare/kv-asset-handler": ^0.1.3
-    "@remix-run/server-runtime": 1.4.0
+    "@remix-run/server-runtime": 1.4.1
   peerDependencies:
     "@cloudflare/workers-types": ^2.0.0 || ^3.0.0
-  checksum: 25621dc43955589a99a9a4f8f35ee3fc65e3d146d26c9081a6f67063d141b8e16b53bc7246d02f5ace57641d2bda0f08d9a67a04725ea6651cb41a94df350d48
+  checksum: 5fdba7d449d9af805b83b1fe2678707db4587641d81b5e1ff7cd7a400dc8ddaaf831404a801410334975978c320111fd1ae9a41a2d42846d2ba88cab8cf5e431
   languageName: node
   linkType: hard
 
@@ -1058,16 +1058,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/react@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@remix-run/react@npm:1.4.0"
+"@remix-run/react@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@remix-run/react@npm:1.4.1"
   dependencies:
     history: ^5.3.0
     react-router-dom: ^6.2.2
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 93fdee32a59d48dd008eb0af273a08208fd91b618743b88fc0b60356054cd419c1f8da169dfda776ccebe7b6d576e035a50dced1e7fd70349e3628927f8fd207
+  checksum: 0c468b2ae855830f150806d896e7530cadb030f7a7da8d337cde67c8f41df953ed6f7a5aed2b6ff62f0fabd675e3c9ad8b497c69bcd42c107260e644c91a1298
   languageName: node
   linkType: hard
 
@@ -1085,6 +1085,23 @@ __metadata:
     react: ">=16.8"
     react-dom: ">=16.8"
   checksum: b08a28933cd509f0e9e6ea97aef12d8eb7de35db018132604d403cdf265a3491957d6861e17cd57bcfbd995517517426a371f33d2344c727e623812416d1faef
+  languageName: node
+  linkType: hard
+
+"@remix-run/server-runtime@npm:1.4.1":
+  version: 1.4.1
+  resolution: "@remix-run/server-runtime@npm:1.4.1"
+  dependencies:
+    "@types/cookie": ^0.4.0
+    cookie: ^0.4.1
+    jsesc: ^3.0.1
+    react-router-dom: ^6.2.2
+    set-cookie-parser: ^2.4.8
+    source-map: ^0.7.3
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: cc1a2efffc70df905906a78648259fd1a43506fc553dbab809d0cf900d86b7161ba9c37aed892a450e448cce4be899d6e584e86a6e221681fcbab4e27a0e1c1c
   languageName: node
   linkType: hard
 
@@ -1170,19 +1187,6 @@ __metadata:
   dependencies:
     defer-to-connect: ^2.0.0
   checksum: c29df3bcec6fc3bdec2b17981d89d9c9fc9bd7d0c9bcfe92821dc533f4440bc890ccde79971838b4ceed1921d456973c4180d7175ee1d0023ad0562240a58d95
-  languageName: node
-  linkType: hard
-
-"@tailwindcss/typography@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "@tailwindcss/typography@npm:0.5.2"
-  dependencies:
-    lodash.castarray: ^4.4.0
-    lodash.isplainobject: ^4.0.6
-    lodash.merge: ^4.6.2
-  peerDependencies:
-    tailwindcss: "*"
-  checksum: f6c27e32c9b48b0e906561d1e9dd3eec8fd5efc9792fd691269ceaa9d30d35bc715023215ec83ff8e5475c38af69e164d577672d935813b70e04b1c820b2ea8e
   languageName: node
   linkType: hard
 
@@ -5776,24 +5780,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.castarray@npm:^4.4.0":
-  version: 4.4.0
-  resolution: "lodash.castarray@npm:4.4.0"
-  checksum: fca8c7047e0ae2738b0b2503fb00157ae0ff6d8a1b716f87ed715b22560e09de438c75b65e01a7e44ceb41c5b31dce2eb576e46db04beb9c699c498e03cbd00f
-  languageName: node
-  linkType: hard
-
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
   checksum: a3f527d22c548f43ae31c861ada88b2637eb48ac6aa3eb56e82d44917971b8aa96fbb37aa60efea674dc4ee8c42074f90f7b1f772e9db375435f6c83a19b3bc6
-  languageName: node
-  linkType: hard
-
-"lodash.isplainobject@npm:^4.0.6":
-  version: 4.0.6
-  resolution: "lodash.isplainobject@npm:4.0.6"
-  checksum: 29c6351f281e0d9a1d58f1a4c8f4400924b4c79f18dfc4613624d7d54784df07efaff97c1ff2659f3e085ecf4fff493300adc4837553104cef2634110b0d5337
   languageName: node
   linkType: hard
 
@@ -8079,12 +8069,11 @@ __metadata:
   resolution: "remix-template-cloudflare-pages@workspace:."
   dependencies:
     "@cloudflare/workers-types": ^3.4.0
-    "@remix-run/cloudflare": ^1.4.0
-    "@remix-run/cloudflare-pages": ^1.4.0
+    "@remix-run/cloudflare": ^1.4.1
+    "@remix-run/cloudflare-pages": ^1.4.1
     "@remix-run/dev": ^1.4.0
     "@remix-run/eslint-config": ^1.4.0
-    "@remix-run/react": ^1.4.0
-    "@tailwindcss/typography": ^0.5.2
+    "@remix-run/react": ^1.4.1
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
     cross-env: ^7.0.3
