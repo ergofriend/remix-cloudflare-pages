@@ -23,7 +23,7 @@
     "cross-env": "^7.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "remix-domains": "^0.0.2",
+    "remix-domains": "github:SeasonedSoftware/remix-domains#cloudflare-adapter-workaround",
     "remix-forms": "^0.7.2",
     "toucan-js": "^2.6.0",
     "zod": "^3.14.4"

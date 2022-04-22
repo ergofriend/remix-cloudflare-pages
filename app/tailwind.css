@@ -479,7 +479,3 @@ Ensure the default browser behavior of the `hidden` attribute.
 .justify-around {
   justify-content: space-around;
 }
-
-.justify-evenly {
-  justify-content: space-evenly;
-}
