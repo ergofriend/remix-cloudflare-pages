@@ -65,8 +65,9 @@ export const action: ActionFunction = async ({context, request}) => {
   })
   const formData = await request.clone().formData()
   const data = new URLSearchParams(formData as URLSearchParams).toString()
+  const newData = new URLSearchParams(formData.entries() as unknown as URLSearchParams).toString()
   const json = JSON.stringify(Object.fromEntries(formData.entries()))
-  const log = `action URLSearchParams: ${JSON.stringify(data)} json: ${json}`
+  const log = `action data: ${data} newData: ${newData} json: ${json}`
   console.log(log)
   sentry.captureMessage(log)
 
