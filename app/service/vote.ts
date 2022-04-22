@@ -11,6 +11,8 @@ const {getSession, commitSession} = createCookieSessionStorage({
     sameSite: 'lax',
     path: '/',
     httpOnly: true,
+    // TODO: read from ENV
+    secrets: ['cookie_secret'],
   },
 })
 
