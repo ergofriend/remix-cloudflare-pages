@@ -28,12 +28,12 @@ export const Vote = () => {
                             onChange={onChange}
                             type="radio"
                             name="like"
-                            id="takenoko"
-                            value="takenoko"
+                            id="kinoko"
+                            value="kinoko"
                             className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                           />
-                          <label htmlFor="takenoko" className="form-check-label inline-block text-gray-800">
-                            たけのこの里
+                          <label htmlFor="kinoko" className="form-check-label inline-block text-gray-800">
+                            左に投票
                           </label>
                         </div>
                         <div className="form-check form-check-inline">
@@ -41,12 +41,12 @@ export const Vote = () => {
                             onChange={onChange}
                             type="radio"
                             name="like"
-                            id="kinoko"
-                            value="kinoko"
+                            id="takenoko"
+                            value="takenoko"
                             className="form-check-input form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                           />
-                          <label htmlFor="kinoko" className="form-check-label inline-block text-gray-800">
-                            きのこの里
+                          <label htmlFor="takenoko" className="form-check-label inline-block text-gray-800">
+                            右に投票
                           </label>
                         </div>
                         <Errors />
