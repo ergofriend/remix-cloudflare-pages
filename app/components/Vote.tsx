@@ -11,11 +11,7 @@ export const Vote = () => {
     <div className="flex flex-col">
       <h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-black-600">どっちが好き？</h3>
       <p>total views: {viewCount ?? '0'}</p>
-      <CardList />
-      <div className="flex justify-around">
-        <p>{voteData.takenoko ?? '0'}</p>
-        <p>{voteData.kinoko ?? '0'}</p>
-      </div>
+      <CardList votes={[voteData.kinoko, voteData.takenoko]} />
       <Form schema={vote.schema}>
         {({Field, Errors, Button, control}) => (
           <>
