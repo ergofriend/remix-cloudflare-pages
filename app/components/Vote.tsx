@@ -12,7 +12,7 @@ export const Vote = () => {
       <h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-black-600">どっちが好き？</h3>
       <p>total views: {viewCount ?? '0'}</p>
       <CardList votes={[voteData.kinoko, voteData.takenoko]} />
-      <Form schema={vote.schema}>
+      <Form schema={vote.schema} className="flex justify-center gap-4">
         {({Field, Errors, Button, control}) => (
           <>
             <Field name="like">
@@ -22,7 +22,7 @@ export const Vote = () => {
                   name="like"
                   render={({field: {onChange}}) => {
                     return (
-                      <div className="flex justify-around">
+                      <div className="flex justify-center gap-10">
                         <div className="form-check form-check-inline">
                           <input
                             onChange={onChange}
