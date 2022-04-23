@@ -2,8 +2,7 @@ import {Form} from 'remix-forms'
 import {Controller} from 'react-hook-form'
 
 import * as vote from '~/service/vote'
-import TakenokoImage from '~/assets/takenoko.png'
-import KinokoImage from '~/assets/kinoko.png'
+import {Card} from './Card'
 
 export const Vote = () => {
   const {viewCount, voteData} = vote.useData()
@@ -13,8 +12,8 @@ export const Vote = () => {
       <h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-black-600">どっちが好き？</h3>
       <p>total views: {viewCount ?? '0'}</p>
       <div className="flex justify-around">
-        <img height={200} width={200} src={TakenokoImage} alt="たけのこの里" />
-        <img height={200} width={200} src={KinokoImage} alt="きのこの里" />
+        <Card type="kinoko" />
+        <Card type="takenoko" />
       </div>
       <div className="flex justify-around">
         <p>{voteData.takenoko ?? '0'}</p>

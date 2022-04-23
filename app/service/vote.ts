@@ -21,7 +21,7 @@ const pageCacheKey = 'indexViewCount'
 
 const voteKey = ['takenoko', 'kinoko'] as const
 
-type VoteKey = typeof voteKey[number]
+export type VoteKey = typeof voteKey[number]
 
 type VoteData = {
   [key in VoteKey]: number
