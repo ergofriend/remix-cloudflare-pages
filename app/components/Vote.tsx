@@ -2,7 +2,7 @@ import {Form} from 'remix-forms'
 import {Controller} from 'react-hook-form'
 
 import * as vote from '~/service/vote'
-import {Card} from './Card'
+import {CardList} from './CardList'
 
 export const Vote = () => {
   const {viewCount, voteData} = vote.useData()
@@ -11,10 +11,7 @@ export const Vote = () => {
     <div className="flex flex-col">
       <h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-black-600">どっちが好き？</h3>
       <p>total views: {viewCount ?? '0'}</p>
-      <div className="flex justify-around">
-        <Card type="kinoko" />
-        <Card type="takenoko" />
-      </div>
+      <CardList />
       <div className="flex justify-around">
         <p>{voteData.takenoko ?? '0'}</p>
         <p>{voteData.kinoko ?? '0'}</p>

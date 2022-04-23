@@ -17,7 +17,7 @@ export const Card: FC<Props> = ({type}) => {
 
   return (
     <div className="rounded-lg overflow-hidden">
-      <img height={200} width={200} src={src} alt={alt} />
+      <img className="pointer-events-none" height={200} width={200} src={src} alt={alt} />
     </div>
   )
 }
