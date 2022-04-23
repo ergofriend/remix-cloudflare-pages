@@ -76,7 +76,9 @@ export const action: ActionFunction = async ({context, request}) => {
     beforeAction: async req => {
       const formData = await req.clone().formData()
       const values = Object.fromEntries(formData.entries()) as z.infer<typeof schema>
-      sentry.captureMessage(`like: ${values.like} from: ${request.headers.get('x-real-ip')}`)
+      const log = `like: ${values.like} from: ${request.headers.get('x-real-ip')}`
+      console.log(log)
+      sentry.captureMessage(log)
 
       const result = schema.safeParse(values)
 
