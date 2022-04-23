@@ -8,7 +8,7 @@ export const Vote = () => {
   const {viewCount, voteData} = vote.useData()
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <h3 className="font-medium leading-tight text-3xl mt-0 mb-2 text-black-600">どっちが好き？</h3>
       <p>total views: {viewCount ?? '0'}</p>
       <CardList votes={[voteData.kinoko, voteData.takenoko]} />
