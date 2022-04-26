@@ -571,12 +571,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 3rem;
 }
 
-.h-10 {
-  height: 2.5rem;
-}
-
-.h-20 {
-  height: 5rem;
+.w-screen {
+  width: 100vw;
 }
 
 .w-4 {
@@ -591,20 +587,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 12rem;
 }
 
-.w-10 {
-  width: 2.5rem;
-}
-
 .w-20 {
   width: 5rem;
 }
 
-.w-1\/3 {
-  width: 33.333333%;
-}
-
-.w-screen {
-  width: 100vw;
+.w-10 {
+  width: 2.5rem;
 }
 
 .origin-top-right {
@@ -640,20 +628,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex-direction: column;
 }
 
+.items-center {
+  align-items: center;
+}
+
 .justify-center {
   justify-content: center;
 }
 
-.justify-around {
-  justify-content: space-around;
-}
-
 .gap-4 {
   gap: 1rem;
-}
-
-.gap-6 {
-  gap: 1.5rem;
 }
 
 .gap-10 {
@@ -709,20 +693,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-size: contain;
 }
 
-.bg-cover {
-  background-size: cover;
-}
-
 .bg-center {
   background-position: center;
 }
 
 .bg-no-repeat {
   background-repeat: no-repeat;
-}
-
-.p-6 {
-  padding: 1.5rem;
 }
 
 .p-3 {
@@ -817,10 +793,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-}
-
-.disabled\:opacity-75:disabled {
-  opacity: 0.75;
 }
 
 .disabled\:opacity-50:disabled {

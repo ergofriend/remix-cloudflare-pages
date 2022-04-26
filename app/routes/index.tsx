@@ -4,7 +4,7 @@ import {Vote} from '~/components/Vote'
 
 const Page = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4 items-center">
       <Vote />
       <Tweet />
     </div>
